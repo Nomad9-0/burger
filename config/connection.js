@@ -6,7 +6,7 @@ module.exports = function(app) {
         port: 3306,
         user: "root",
         // Yours password
-        password: "************",
+        password: "*********",
         database: "burgers_db"
     });
 

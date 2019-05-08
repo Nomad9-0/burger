@@ -1,21 +1,32 @@
-var mysql = require("mysql");
+// Dependencies
+var mysql = require('mysql');
 
-module.exports = function(app) {
-    var connection = mysql.createConnection({
-        host: "localhost",
-        port: 3306,
-        user: "root",
-        // Yours password
-        password: "*********",
-        database: "burgers_db"
-    });
+// MySQL connection
+var connection;
 
-    connection.connect(function(err) {
-        if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-        }
-    
-        console.log("connected as id " + connection.threadId);
-    });
-};
+//if (process.env.JAWSDB_URL) {
+	// DB is JawsDB on Heroku
+// 	connection = mysql.createConnection(process.env.JAWSDB_URL);
+// } else {
+	// DB is local on localhost
+	connection = mysql.createConnection({
+		port: 3306,
+		host: 'localhost',
+		user: 'root',
+		// Your Password
+		password: '',
+		database: 'burgers_db'
+	})
+//};
+
+// Connect MySQL
+connection.connect(function(err) {
+  if (err) {
+    console.error('ERROR: ' + err.stack + '\n\n');
+    return;
+  }
+  console.log('Connected to MySQL database as id ' + connection.threadId + '\n\n');
+});
+
+// Export connection for ORM use
+module.exports = connection;

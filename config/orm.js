@@ -1,5 +1,5 @@
 // Import the MySQL connection object
-var connection = require ('./connection.js');
+var connection = require ('../config/connection.js');
 
 // Helper function for generating MySQL syntax
 function printQuestionMarks(num) {
@@ -47,7 +47,8 @@ var orm = {
 		queryString += printQuestionMarks(vals.length);
 		queryString += ") ";
 
-		// console.log(queryString);
+		console.log(queryString);
+
 		connection.query(queryString, vals, function(err, result) {
 			if (err) {
 				throw err;
@@ -65,7 +66,7 @@ var orm = {
 		queryString += " WHERE ";
 		queryString += condition;
 
-		// console.log(queryString);
+		console.log(queryString);
 		connection.query(queryString, function(err, result) {
 			if (err) {
 				throw err;
